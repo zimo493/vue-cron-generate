@@ -1,9 +1,13 @@
 {
   "name": "vue-cron-generate",
   "private": true,
-  "author": "huzimo",
   "version": "0.0.1",
   "type": "module",
+  "author": {
+    "name": "HuZimo",
+    "email": "2081182432@qq.com",
+    "url": "https://github.com/zimo493/vue-cron-generate"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
