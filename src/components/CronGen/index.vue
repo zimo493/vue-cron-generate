@@ -153,4 +153,11 @@ const cronGenValueString = computed(() => {
     year ? " " + year : ""
   }`;
 });
+
+watch(
+  () => cronGenValueString.value,
+  (v) => {
+    emit("update:modelValue", v);
+  }
+);
 </script>

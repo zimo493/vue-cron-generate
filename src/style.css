@@ -5,7 +5,7 @@ body,
   align-items: center;
   justify-content: center;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .container {
@@ -15,8 +15,24 @@ body,
 
 .cronGenValue {
   display: flex;
-  & > div {
-    flex: 1;
-    white-space: nowrap;
-  }
+}
+
+.cronGenValue > div {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.n-card > .n-card__content:first-child,
+.n-card > .n-card__footer:first-child,
+.n-card > .n-card__content,
+.n-card > .n-card__footer {
+  padding: 12px;
+}
+
+.n-card > .n-card__action,
+.n-card > .n-card-header {
+  padding: 16px;
+}
+.n-card.n-card--content-segmented > .n-card__content {
+  padding-top: 12px;
 }

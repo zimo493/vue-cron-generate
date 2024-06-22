@@ -28,6 +28,8 @@ pnpm install
 ```shell
 pnpm dev
 ```
+## 预览截图
+![main](https://huzimo.vip/images/cron.png)
 
 ## 联系方式
 
