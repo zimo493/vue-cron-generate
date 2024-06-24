@@ -9,7 +9,11 @@
       <n-gi>
         <n-card title="弹窗使用示例" :segmented="{ content: true }">
           <n-input-group class="step4">
-            <n-input placeholder="请输入Cron表达式" clearable v-model:value="value" />
+            <n-input
+              placeholder="请输入Cron表达式"
+              clearable
+              v-model:value="value"
+            />
             <n-button type="primary" class="step5" @click="visible = true">
               <template #icon>
                 <nova-icon icon="ant-design:clock-circle-outlined" />
@@ -21,7 +25,12 @@
       </n-gi>
     </n-grid>
 
-    <n-modal style="width: 1000px" v-model:show="visible" preset="card" title="Cron表达式生成器">
+    <n-modal
+      style="width: 1000px"
+      v-model:show="visible"
+      preset="card"
+      title="Cron表达式生成器"
+    >
       <CronGen ref="crontabRef" v-model="value" />
     </n-modal>
   </div>
@@ -54,7 +63,11 @@ const driverObj = driver({
     },
     {
       element: ".step4",
-      popover: { description: "这种方式可以用于表单提交哦~ 也可在这里输入表达式点击按钮进行反解析", side: "top" },
+      popover: {
+        description:
+          "这种方式可以用于表单提交哦~ 也可在这里输入表达式点击按钮进行反解析",
+        side: "top",
+      },
     },
     {
       element: ".step5",
