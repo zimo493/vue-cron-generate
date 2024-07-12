@@ -3,7 +3,12 @@ import vue from "@vitejs/plugin-vue";
 
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
+import {
+  NaiveUiResolver,
+  ElementPlusResolver,
+} from "unplugin-vue-components/resolvers";
+
+import UnoCSS from "@unocss/vite";
 
 import Icons from "unplugin-icons/vite";
 import { FileSystemIconLoader } from "unplugin-icons/loaders";
@@ -35,9 +40,11 @@ export default defineConfig(({ mode }) => {
 
     plugins: [
       vue(),
+      UnoCSS(),
       AutoImport({
         imports: [
           "vue",
+          "vue-router",
           {
             "naive-ui": [
               "useDialog",
@@ -46,6 +53,9 @@ export default defineConfig(({ mode }) => {
               "useLoadingBar",
             ],
           },
+        ],
+        resolvers: [
+          ElementPlusResolver(), // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
         ],
         include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
         // 是否在 vue 模板中自动导入
@@ -56,6 +66,7 @@ export default defineConfig(({ mode }) => {
       Components({
         resolvers: [
           NaiveUiResolver(),
+          ElementPlusResolver(), // 自动导入 Element Plus 组件
           IconsResolver({
             prefix: false,
             customCollections: ["svg-icons"],
