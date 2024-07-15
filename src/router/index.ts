@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: "/",
       name: "NaiveCrontab",
-      component: import("@/views/naive/index.vue"),
+      component: () => import("@/views/naive/index.vue"),
     },
     {
       path: "/el",
