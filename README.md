@@ -4,7 +4,7 @@
 ## 依赖
 
 - Vue 3.0.0+
-- Naive UI
+- Naive UI / Element Plus
 - ...
 
 ## 安装使用步骤
@@ -29,7 +29,7 @@ pnpm install
 pnpm dev
 ```
 ## 预览截图
-![main](https://huzimo.vip/images/cron.png)
+![main](https://cron.huzimo.vip/images/cron.png)
 
 ## 联系方式
 
