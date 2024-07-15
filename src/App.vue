@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <n-flex vertical>
+    <n-flex vertical class="mt-[10px]">
       <n-flex>
         <n-button type="primary" @click="router.push('/')">
           NaiveUi封装

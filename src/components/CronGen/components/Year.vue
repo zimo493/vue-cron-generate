@@ -58,12 +58,12 @@
         </n-gi>
         <n-gi>
           <n-flex>
-            <n-radio :value="6" />
+            <n-radio :value="5" />
             指定年
             <div style="flex: 1">
               <n-checkbox-group
                 v-model:value="checkboxList"
-                @update:value="radioChange(6)"
+                @update:value="radioChange(5)"
               >
                 <n-space>
                   <n-checkbox

@@ -1,16 +1,15 @@
 <template>
-  <el-input
-    v-model="cronExpression"
-    style="max-width: 600px"
-    placeholder="Please input"
-    class="input-with-select"
-  >
-    <template #append>
-      <el-button type="primary" @click="handle"> 生成表达式 </el-button>
-    </template>
-  </el-input>
+  <el-form>
+    <el-form-item label="Cron表达式：">
+      <el-input v-model="cronExpression" placeholder="请输入Cron表达式">
+        <template #append>
+          <el-button type="primary" @click="handle"> 生成表达式 </el-button>
+        </template>
+      </el-input>
+    </el-form-item>
+  </el-form>
 
-  <ElCronGen ref="cronGenRef" />
+  <ElCronGen ref="cronGenRef" v-model="cronExpression" />
 </template>
 <script lang="ts">
 export default { name: "ElementPlusCronTab" };

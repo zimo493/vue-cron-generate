@@ -8,11 +8,6 @@ body,
   overflow-x: hidden;
 }
 
-.container {
-  padding: 10px;
-  width: 1000px;
-}
-
 .cronGenValue {
   display: flex;
 }

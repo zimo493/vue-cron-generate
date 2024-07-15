@@ -10,7 +10,7 @@
       <el-radio v-model="radioValue" :label="2">
         周期从
         <el-input-number
-          class="m-4"
+          class="mx-1em my-0"
           v-model="cycle01"
           :min="0"
           :max="58"
@@ -19,7 +19,7 @@
         />
         到
         <el-input-number
-          class="m-4"
+          class="mx-1em my-0"
           v-model="cycle02"
           :min="cycle01 ? cycle01 + 1 : 1"
           :max="59"
@@ -34,7 +34,7 @@
       <el-radio v-model="radioValue" :label="3">
         周期从
         <el-input-number
-          class="m-4"
+          class="mx-1em my-0"
           v-model="average01"
           :min="0"
           :max="58"
@@ -43,7 +43,7 @@
         />
         秒开始，每
         <el-input-number
-          class="m-4"
+          class="mx-1em my-0"
           v-model="average02"
           :min="1"
           :max="59 - average01 || 0"
@@ -55,7 +55,7 @@
     </el-form-item>
 
     <el-form-item class="start">
-      <el-radio v-model="radioValue" :label="4" style="margin-right: 16px">
+      <el-radio v-model="radioValue" :label="4" style="margin-right: 20px">
         指定秒
       </el-radio>
       <div class="flex">

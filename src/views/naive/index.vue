@@ -39,7 +39,7 @@ export default { name: "NaiveUi" };
 <script lang="ts" setup>
 import { usedDiver } from "@/hooks/useDriver";
 
-const { driverObj, cronExpression, value, visible } = usedDiver();
+const { cronExpression, value, visible } = usedDiver();
 
-onMounted(() => driverObj.drive());
+// onMounted(() => driverObj.drive());
 </script>

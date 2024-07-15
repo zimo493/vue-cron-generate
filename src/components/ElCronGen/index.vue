@@ -20,9 +20,15 @@
         <el-tab-pane label="日" name="day">
           <ElDay v-model="crontabValue.day" />
         </el-tab-pane>
-        <el-tab-pane label="月" name="month">Task</el-tab-pane>
-        <el-tab-pane label="周" name="week">Task</el-tab-pane>
-        <el-tab-pane label="年" name="year">Task</el-tab-pane>
+        <el-tab-pane label="月" name="month">
+          <ElMonth v-model="crontabValue.month" />
+        </el-tab-pane>
+        <el-tab-pane label="周" name="week">
+          <ElWeek v-model="crontabValue.week" />
+        </el-tab-pane>
+        <el-tab-pane label="年" name="year">
+          <ElYear v-model="crontabValue.year" />
+        </el-tab-pane>
       </el-tabs>
       <el-card>
         <template #header>
@@ -41,6 +47,14 @@
             </el-tag>
           </div>
         </div>
+      </el-card>
+      <el-card title="">
+        <template #header>
+          <div class="text-16px">
+            <span>最近5次运行时间</span>
+          </div>
+        </template>
+        <Result v-model="crontabValueString" />
       </el-card>
     </div>
     <template #footer>
