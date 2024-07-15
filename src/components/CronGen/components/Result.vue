@@ -213,7 +213,7 @@ const expressionChange = () => {
             }
           } else if (thisWeek == 7) {
             // 当星期6时只需判断不是1号就可进行操作
-            if (dayRule.valueSup !== 1) {
+            if (valueSup.value !== 1) {
               DD--;
             } else {
               DD += 2;
@@ -227,7 +227,7 @@ const expressionChange = () => {
             "week"
           );
           // 校验当前星期是否在星期池（dayRuleSup）中
-          if (dayRule.valueSup.indexOf(thisWeek) < 0) {
+          if (dayRuleSup.value.indexOf(thisWeek) < 0) {
             // 如果到达最大值时
             if (Di == DDate.length - 1) {
               resetDay();
@@ -246,14 +246,14 @@ const expressionChange = () => {
             new Date(YY + "-" + MM + "-" + DD + " 00:00:00"),
             "week"
           );
-          if (dayRule.valueSup[1] >= thisWeek) {
+          if (dayRuleSup.value[1] >= thisWeek) {
             DD =
-              (dayRule.valueSup[0] - 1) * 7 +
-              dayRule.valueSup[1] -
+              (dayRuleSup.value[0] - 1) * 7 +
+              dayRuleSup.value[1] -
               thisWeek +
               1;
           } else {
-            DD = dayRule.valueSup[0] * 7 + dayRule.valueSup[1] - thisWeek + 1;
+            DD = dayRuleSup.value[0] * 7 + dayRuleSup.value[1] - thisWeek + 1;
           }
         } else if (dayRule.value == "lastWeek") {
           // 如果指定了每月最后一个星期几
@@ -273,10 +273,10 @@ const expressionChange = () => {
             "week"
           );
           // 找到要求中最近的那个星期几
-          if (dayRule.valueSup < thisWeek) {
-            DD -= thisWeek - dayRule.valueSup;
-          } else if (dayRule.valueSup > thisWeek) {
-            DD -= 7 - (dayRule.valueSup - thisWeek);
+          if (dayRuleSup.value < thisWeek) {
+            DD -= thisWeek - dayRuleSup.value;
+          } else if (dayRuleSup.value > thisWeek) {
+            DD -= 7 - (dayRuleSup.value - thisWeek);
           }
         }
         // 判断时间值是否小于10置换成“05”这种格式
@@ -421,28 +421,28 @@ const getMonthArr = (rule) => {
 // 获取"日"数组-主要为日期规则
 const getWeekArr = (rule) => {
   // 只有当日期规则的两个值均为“”时则表达日期是有选项的
-  if (dayRule.value == "" && dayRule.valueSup == "") {
+  if (dayRule.value == "" && dayRuleSup.value == "") {
     if (rule.indexOf("-") >= 0) {
       dayRule.value = "weekDay";
-      dayRule.valueSup = getCycleArr(rule, 7, false);
+      dayRuleSup.value = getCycleArr(rule, 7, false);
     } else if (rule.indexOf("#") >= 0) {
       dayRule.value = "assWeek";
       let matchRule = rule.match(/[0-9]{1}/g);
-      dayRule.valueSup = [Number(matchRule[1]), Number(matchRule[0])];
+      dayRuleSup.value = [Number(matchRule[1]), Number(matchRule[0])];
       dateArr.value[3] = [1];
-      if (dayRule.valueSup[1] == 7) {
-        dayRule.valueSup[1] = 0;
+      if (dayRuleSup.value[1] == 7) {
+        dayRuleSup.value[1] = 0;
       }
     } else if (rule.indexOf("L") >= 0) {
       dayRule.value = "lastWeek";
-      dayRule.valueSup = Number(rule.match(/[0-9]{1,2}/g)[0]);
+      dayRuleSup.value = Number(rule.match(/[0-9]{1,2}/g)[0]);
       dateArr.value[3] = [31];
-      if (dayRule.valueSup == 7) {
-        dayRule.valueSup = 0;
+      if (dayRuleSup.value == 7) {
+        dayRuleSup.value = 0;
       }
     } else if (rule !== "*" && rule !== "?") {
       dayRule.value = "weekDay";
-      dayRule.valueSup = getAssignArr(rule);
+      dayRuleSup.value = getAssignArr(rule);
     }
   }
 };
@@ -450,26 +450,26 @@ const getWeekArr = (rule) => {
 const getDayArr = (rule) => {
   dateArr.value[3] = getOrderArr(1, 31);
   dayRule.value = "";
-  dayRule.valueSup = "";
+  dayRuleSup.value = "";
   if (rule.indexOf("-") >= 0) {
     dateArr.value[3] = getCycleArr(rule, 31, false);
-    dayRule.valueSup = "null";
+    dayRuleSup.value = "null";
   } else if (rule.indexOf("/") >= 0) {
     dateArr.value[3] = getAverageArr(rule, 31);
-    dayRule.valueSup = "null";
+    dayRuleSup.value = "null";
   } else if (rule.indexOf("W") >= 0) {
     dayRule.value = "workDay";
-    dayRule.valueSup = Number(rule.match(/[0-9]{1,2}/g)[0]);
-    dateArr.value[3] = [dayRule.valueSup];
+    dayRuleSup.value = Number(rule.match(/[0-9]{1,2}/g)[0]);
+    dateArr.value[3] = [dayRuleSup.value];
   } else if (rule.indexOf("L") >= 0) {
     dayRule.value = "lastDay";
-    dayRule.valueSup = "null";
+    dayRuleSup.value = "null";
     dateArr.value[3] = [31];
   } else if (rule !== "*" && rule !== "?") {
     dateArr.value[3] = getAssignArr(rule);
-    dayRule.valueSup = "null";
+    dayRuleSup.value = "null";
   } else if (rule == "*") {
-    dayRule.valueSup = "null";
+    dayRuleSup.value = "null";
   }
 };
 // 获取"时"数组
