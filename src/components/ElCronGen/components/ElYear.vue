@@ -1,88 +1,85 @@
 <template>
-  <n-card>
-    <n-radio-group v-model:value="radioValue" name="selectYear">
-      <n-grid x-gap="20" y-gap="20" :cols="1">
-        <n-gi>
-          <n-flex align="center">
-            <n-radio :value="1" /> 不填，允许的通配符[, - * /]
-          </n-flex>
-        </n-gi>
-        <n-gi>
-          <n-flex align="center"> <n-radio :value="2" />每年 </n-flex>
-        </n-gi>
-        <n-gi>
-          <n-flex align="center">
-            <n-radio :value="3" />
-            周期从
-            <n-input-number
-              v-model:value="cycle01"
-              :min="fullYear"
-              :max="2098"
-              clearable
-              @update:value="radioChange(3)"
-              @focus="radioChange(3)"
-            />
-            年到
-            <n-input-number
-              v-model:value="cycle02"
-              :min="cycle01 ? cycle01 + 1 : fullYear + 1"
-              :max="2099"
-              clearable
-              @update:value="radioChange(3)"
-              @focus="radioChange(3)"
-            />年
-          </n-flex>
-        </n-gi>
-        <n-gi>
-          <n-flex align="center">
-            <n-radio :value="4" />
-            周期从
-            <n-input-number
-              v-model:value="average01"
-              :min="fullYear"
-              :max="2098"
-              clearable
-              @update:value="radioChange(4)"
-              @focus="radioChange(4)"
-            />
-            年开始，每
-            <n-input-number
-              v-model:value="average02"
-              :min="1"
-              :max="2099 - average01 || fullYear"
-              clearable
-              @update:value="radioChange(4)"
-              @focus="radioChange(4)"
-            />年执行一次
-          </n-flex>
-        </n-gi>
-        <n-gi>
-          <n-flex>
-            <n-radio :value="5" />
-            指定年
-            <div style="flex: 1">
-              <n-checkbox-group
-                v-model:value="checkboxList"
-                @update:value="radioChange(5)"
-              >
-                <n-space>
-                  <n-checkbox
-                    v-for="item in 11"
-                    :key="item"
-                    :value="item - 1 + fullYear"
-                    :label="String(item - 1 + fullYear)"
-                  />
-                </n-space>
-              </n-checkbox-group>
-            </div>
-          </n-flex>
-        </n-gi>
-      </n-grid>
-    </n-radio-group>
-  </n-card>
+  <el-form>
+    <el-form-item>
+      <el-radio :label="1" v-model="radioValue">
+        不填，允许的通配符[, - * /]
+      </el-radio>
+    </el-form-item>
+
+    <el-form-item>
+      <el-radio :label="2" v-model="radioValue"> 每年 </el-radio>
+    </el-form-item>
+
+    <el-form-item>
+      <el-radio :label="3" v-model="radioValue">
+        周期从
+        <el-input-number
+          class="mx-1em my-0"
+          controls-position="right"
+          v-model="cycle01"
+          :min="fullYear"
+          :max="2098"
+          @focus="radioChange(3)"
+        />
+        年到
+        <el-input-number
+          class="mx-1em my-0"
+          controls-position="right"
+          v-model="cycle02"
+          :min="cycle01 ? cycle01 + 1 : fullYear + 1"
+          :max="2099"
+          @focus="radioChange(3)"
+        />年
+      </el-radio>
+    </el-form-item>
+
+    <el-form-item>
+      <el-radio :label="4" v-model="radioValue">
+        周期从
+        <el-input-number
+          class="mx-1em my-0"
+          controls-position="right"
+          v-model="average01"
+          :min="fullYear"
+          :max="2098"
+          @focus="radioChange(4)"
+        />
+        年开始，每
+        <el-input-number
+          class="mx-1em my-0"
+          controls-position="right"
+          v-model="average02"
+          :min="1"
+          :max="2099 - average01 || fullYear"
+          @focus="radioChange(4)"
+        />
+        年执行一次
+      </el-radio>
+    </el-form-item>
+
+    <el-form-item class="start">
+      <el-radio v-model="radioValue" :label="5" style="margin-right: 20px">
+        指定年
+      </el-radio>
+      <div class="flex">
+        <el-checkbox-group
+          v-model="checkboxList"
+          @update:value="radioChange(5)"
+          class="grid grid-cols-10 justify-items-stretch"
+        >
+          <el-checkbox
+            v-for="item in 20"
+            :key="item"
+            :value="item - 1 + fullYear"
+            :label="String(item - 1 + fullYear)"
+          />
+        </el-checkbox-group>
+      </div>
+    </el-form-item>
+  </el-form>
 </template>
 <script lang="ts">
-export default { name: "CronGenYear" };
+export default { name: "ElYear" };
 </script>
 
 <script lang="ts" setup>
@@ -207,3 +204,11 @@ watch(
   (v) => (value.value = v)
 );
 </script>
+<style lang="scss" scoped>
+::v-deep(.start) {
+  margin-bottom: 0;
+  .el-form-item__content {
+    align-items: flex-start;
+  }
+}
+</style>

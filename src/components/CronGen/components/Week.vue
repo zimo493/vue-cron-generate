@@ -218,10 +218,11 @@ watch(
 
 // 计算两个周期值
 const cycleTotal = computed(() => {
-  cycle01.value = checkNumber(cycle01.value, 1, 7);
-  cycle02.value = checkNumber(cycle02.value, 1, 7);
-  return cycle01.value + "-" + cycle02.value;
+  return (
+    checkNumber(cycle01.value, 1, 7) + "-" + checkNumber(cycle02.value, 1, 7)
+  );
 });
+
 watch(
   () => cycleTotal.value,
   (v) => (value.value = v)
@@ -229,9 +230,11 @@ watch(
 
 // 计算平均用到的值
 const averageTotal = computed(() => {
-  average02.value = checkNumber(average02.value, 1, 7);
-  average01.value = checkNumber(average01.value, 1, 4);
-  return average02.value + "#" + average01.value;
+  return (
+    checkNumber(average02.value, 1, 7) +
+    "#" +
+    checkNumber(average01.value, 1, 4)
+  );
 });
 watch(
   () => averageTotal.value,
@@ -240,8 +243,7 @@ watch(
 
 // 最近的工作日（格式）
 const weekdayCheck = computed(() => {
-  weekday.value = checkNumber(weekday.value, 1, 7);
-  return weekday.value + "L";
+  return checkNumber(weekday.value, 1, 7) + "L";
 });
 watch(
   () => weekdayCheck.value,

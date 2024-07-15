@@ -14,6 +14,7 @@
       "node",
       "vite/client",
       "naive-ui/volar",
+      "element-plus/global",
       "unplugin-icons/types/vue"
     ],
     "allowJs": true,
