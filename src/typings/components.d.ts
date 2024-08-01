@@ -30,8 +30,6 @@ declare module 'vue' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
-    ElTag: typeof import('element-plus/es')['ElTag']
-    ElText: typeof import('element-plus/es')['ElText']
     ElWeek: typeof import('./../components/ElCronGen/components/ElWeek.vue')['default']
     ElYear: typeof import('./../components/ElCronGen/components/ElYear.vue')['default']
     Hour: typeof import('./../components/CronGen/components/Hour.vue')['default']
