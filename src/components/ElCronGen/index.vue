@@ -32,20 +32,42 @@
       </el-tabs>
       <el-card>
         <template #header>
-          <div class="text-16px flex justify-between items-center">
+          <div class="text-16px">
+            <span>Cron 表达式</span>
+          </div>
+          <!-- <div class="text-16px flex justify-between items-center">
             <span>Cron 表达式</span>
             <el-text type="primary" size="large">
               {{ crontabValueString }}
             </el-text>
-          </div>
+          </div> -->
         </template>
-        <div class="crontabValue">
+        <!-- <div class="crontabValue">
           <div v-for="(item, key, index) in crontabValue" :key="index">
             {{ map[key] }}：
             <el-tag v-if="item">
               {{ item }}
             </el-tag>
           </div>
+        </div> -->
+
+        <div class="popup-result">
+          <table>
+            <thead>
+              <th v-for="item of tabTitles" width="80" :key="item">
+                {{ item }}
+              </th>
+              <th>Cron 表达式</th>
+            </thead>
+            <tbody>
+              <td v-for="(item, _, index) in crontabValue" :key="index">
+                <span>{{ item }}</span>
+              </td>
+              <td>
+                <span>{{ crontabValueString }}</span>
+              </td>
+            </tbody>
+          </table>
         </div>
       </el-card>
       <el-card title="">
@@ -104,6 +126,8 @@ defineExpose({
   },
 });
 
+const tabTitles = ["秒", "分", "时", "日", "月", "周", "年"];
+
 // 默认选中秒
 const activeName = ref<keyof CrontabValue>("second");
 
@@ -144,15 +168,15 @@ const getValue = () => {
 
 const crontabValue = ref<CrontabValue>(getValue());
 
-const map: CrontabValue = {
-  second: "秒",
-  min: "分",
-  hour: "时",
-  day: "日",
-  month: "月",
-  week: "周",
-  year: "年",
-};
+// const map: CrontabValue = {
+//   second: "秒",
+//   min: "分",
+//   hour: "时",
+//   day: "日",
+//   month: "月",
+//   week: "周",
+//   year: "年",
+// };
 
 watch(
   () => crontabValue.value.day,
@@ -204,6 +228,32 @@ const cancel = () => {
   & > div {
     flex: 1;
     white-space: nowrap;
+  }
+}
+
+.popup-result {
+  box-sizing: border-box;
+  line-height: 24px;
+  // padding: 10px;
+  // border: 1px solid var(--el-border-color-light);
+  position: relative;
+  border-radius: 4px;
+  background-color: var(--el-bg-color-overlay);
+  table {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    span {
+      display: block;
+      width: 100%;
+      line-height: 30px;
+      height: 30px;
+      white-space: nowrap;
+      overflow: hidden;
+      border: 1px solid var(--el-border-color-light);
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
   }
 }
 </style>

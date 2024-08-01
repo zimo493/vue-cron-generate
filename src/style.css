@@ -59,3 +59,6 @@ body,
   padding: 15px;
   border-top: 1px solid var(--el-border-color-lighter);
 }
+.el-card .el-card__body {
+  padding: 14px 20px;
+}
