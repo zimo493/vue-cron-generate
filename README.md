@@ -31,10 +31,4 @@ pnpm dev
 ## 预览截图
 ![main](https://cron.huzimo.vip/images/cron.png)
 
-## 联系方式
-
-邮箱 : 2081182432@qq.com
-
-个人首页: https://huzimo.vip
-
 如果对您有帮助, 欢迎 star
